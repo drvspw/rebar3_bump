@@ -1,5 +1,5 @@
 ## rebar3_bump
-A rebar plugin to check all `rebar.config` dependecies are included in the application's runtime dependencies i.e. included in `.app.src` file.
+A rebar plugin to inspired by ruby's `bump` gem. This plugin can be used to manage package version.
 
 
 ## Build
@@ -14,14 +14,30 @@ Add the plugin to your rebar config:
 	{rebar3_bump, "0.1.0"}
 ]}.
 ```
+Then set the `vsn` attribute of `.app.src`/`relx` release configuration to `{cmd, "rebar3 bump"}`. An example `.app.src` is listed below
+```erlang
+{application, sample_app,
+ [{description, "An OTP library"},
+  {vsn, {cmd, "rebar3 bump"}},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
+ ```
 
 Then just call your plugin directly in an existing application:
 ```bash
-$ rebar3 check-deps
-===> Fetching rebar3_bump
-===> Compiling rebar3_bump
-<Plugin Output>
+$ rebar3 bump [major|minor|patch|pre}
 ```
+This plugin requires a configuration file `bump.config` to be present in your project. The file will get created if not present. The plugin also automatically appends git metadata to the version.
+
 ## Release
 - Make appropriate code changes
 - Update version in `src/rebar3_bump.app.src`

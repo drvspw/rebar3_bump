@@ -1,6 +1,6 @@
 {application, sample_app,
  [{description, "An OTP library"},
-  {vsn, "0.1.0"},
+  {vsn, {cmd, "rebar3 bump"}},
   {registered, []},
   {applications,
    [kernel,

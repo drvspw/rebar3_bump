@@ -1,5 +1,5 @@
 {application, rebar3_bump,
- [{description, "A rebar plugin"},
+ [{description, "Erlang analog of ruby bump gem."},
   {vsn, "0.1.0"},
   {registered, []},
   {applications,
