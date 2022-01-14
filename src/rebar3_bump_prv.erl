@@ -1,6 +1,6 @@
 -module(rebar3_bump_prv).
 
--export([init/1, do/1, format_error/2]).
+-export([init/1, do/1, format_error/1, format_error/2]).
 
 -define(PROVIDER, bump).
 -define(DEPS, []).
@@ -105,6 +105,10 @@ handle_bump_command(Cmd, BumpFile, State) ->
 -spec format_error(iolist(), any()) ->  iolist().
 format_error(Format, Reason) ->
     io_lib:format(Format, Reason).
+
+-spec format_error(any()) ->  iolist().
+format_error(Reason) ->
+  io_lib:format("~p", [Reason]).
 
 -spec get_version(string()) -> iolist().
 get_version(BumpFile) ->
